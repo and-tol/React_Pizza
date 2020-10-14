@@ -1,0 +1,1 @@
+export { unicId } from './unicId';
