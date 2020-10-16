@@ -1,7 +1,5 @@
 // Core
 import React from 'react'
-//Config
-import { availablePizzaKinds } from './availablePizzaKinds'
 // Hooks
 import { useCategories } from './hooks/useCategories'
 
@@ -22,7 +20,7 @@ import { useCategories } from './hooks/useCategories'
 
 //   render() {
 //     const { handlePizzaKind } = this.props;
-//     const pizzaKindsJSX = availablePizzaKinds.map(kind => (
+//     const pizzaKindsJSX = availableCategories.map(kind => (
 //       <li
 //         className={this.state.activeKind === index ? 'active' : ''}
 //         onClick={() => this.onSelectKind(index)}
@@ -42,12 +40,12 @@ import { useCategories } from './hooks/useCategories'
 //   }
 // }
 
-export const Categories = () => {
+export const Categories = React.memo(({ availableCategories }) => {
   const { activeKind, onSelectKind } = useCategories();
 
   const pizzaKindsJSX =
-    availablePizzaKinds &&
-    availablePizzaKinds.map((kind, index) => (
+    availableCategories &&
+    availableCategories.map((kind, index) => (
       <li
         className={activeKind === index ? 'active' : ''}
         onClick={() => {
@@ -74,4 +72,4 @@ export const Categories = () => {
       </ul>
     </div>
   );
-};
+})

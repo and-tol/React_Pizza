@@ -39,7 +39,6 @@ export const useHomeFetch = () => {
     axios.get('http://localhost:3000/db.json').then(({ data }) => {
       dispatch(pizzasActions.setPizzas(data.pizzas));
     });
-    console.log('Запрос на сервер');
   }, [dispatch]);
 
   // * With Thunk

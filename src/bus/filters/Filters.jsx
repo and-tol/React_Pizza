@@ -1,21 +1,16 @@
 // Ccre
 // Core
-import React from 'react'
+import React from 'react';
 // Components
-import { Categories, SortPopup } from './components'
+import { Categories, SortPopup } from './components';
 
+import { availableFilters } from './availableFilters';
 
 export const Filters = () => {
-
-  const onClickItem = (params) => {
-
-  }
-
-
   return (
     <>
-      <Categories />
-      <SortPopup />
+      <Categories availableCategories={availableFilters.availableCategories} />
+      <SortPopup availableSorting={availableFilters.availableSorting} />
     </>
   );
 };

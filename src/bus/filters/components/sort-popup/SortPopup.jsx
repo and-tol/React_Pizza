@@ -1,11 +1,11 @@
 // Core
 import React from 'react'
-// Config
-import { availableSorting } from './availableSorting'
+
 // Hooks
 import { useSortPopup } from './hooks/useSortPopup'
 
-export const SortPopup = () => {
+export const SortPopup = React.memo(({ availableSorting }) => {
+
   const {
     visiblePopup,
     activeSorting,
@@ -13,7 +13,7 @@ export const SortPopup = () => {
     activeLabel,
     toggleVisiblePopup,
     onActiveSorting,
-  } = useSortPopup()
+  } = useSortPopup();
 
   const sortingJSX =
     availableSorting &&
@@ -44,20 +44,13 @@ export const SortPopup = () => {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span
-          onClick={toggleVisiblePopup}
-        >
-          {activeLabel}
-        </span>
+        <span onClick={toggleVisiblePopup}>{activeLabel}</span>
       </div>
-      {visiblePopup
-        && (
+      {visiblePopup && (
         <div className='sort__popup'>
-          <ul>
-            {sortingJSX}
-          </ul>
+          <ul>{sortingJSX}</ul>
         </div>
       )}
     </div>
-  )
-}
+  );
+});

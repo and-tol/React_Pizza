@@ -1,9 +1,10 @@
 // Core
 import { useState, useEffect, useRef } from 'react';
 // Config
-import { availableSorting } from '../availableSorting';
+import {availableFilters} from '../../../availableFilters'
 
 export const useSortPopup = () => {
+  const { availableSorting } = availableFilters;
   const [visiblePopup, setVisiblePopup] = useState(false);
   const [activeSorting, setActiveSorting] = useState(0);
   const sortRef = useRef();
