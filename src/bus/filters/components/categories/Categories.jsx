@@ -64,7 +64,8 @@ export const Categories = () => {
           className={activeKind === null ? 'active' : ''}
           onClick={() => {
             onSelectKind(null);
-          }}>
+          }}
+        >
           Все
         </li>
         {pizzaKindsJSX}

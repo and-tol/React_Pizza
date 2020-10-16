@@ -17,15 +17,15 @@ export const SortPopup = () => {
 
   const sortingJSX =
     availableSorting &&
-    availableSorting.map((sorting, index) => (
+    availableSorting.map(({ name, type }, index) => (
       <li
-        key={sorting}
+        key={type}
         className={activeSorting === index ? 'active' : ''}
         onClick={() => onActiveSorting(index)}
       >
-        {sorting}
+        {name}
       </li>
-    ))
+    ));
 
   return (
     <div ref={sortRef} className='sort'>
@@ -50,7 +50,8 @@ export const SortPopup = () => {
           {activeLabel}
         </span>
       </div>
-      {visiblePopup && (
+      {visiblePopup
+        && (
         <div className='sort__popup'>
           <ul>
             {sortingJSX}
