@@ -1,6 +1,5 @@
 // Core
 import React from 'react'
-import PropTypes from 'prop-types'
 //Config
 import { availablePizzaKinds } from './availablePizzaKinds'
 // Hooks
@@ -51,8 +50,11 @@ export const Categories = () => {
     availablePizzaKinds.map((kind, index) => (
       <li
         className={activeKind === index ? 'active' : ''}
-        onClick={() => onSelectKind(index)}
-        key={kind}>
+        onClick={() => {
+          onSelectKind(index);
+        }}
+        key={kind}
+      >
         {kind}
       </li>
     ));
@@ -64,15 +66,12 @@ export const Categories = () => {
           className={activeKind === null ? 'active' : ''}
           onClick={() => {
             onSelectKind(null);
-          }}>
+          }}
+        >
           Все
         </li>
         {pizzaKindsJSX}
       </ul>
     </div>
   );
-};
-
-Categories.propTypes = {
-  handlePizzaKind: PropTypes.func,
 };

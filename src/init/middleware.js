@@ -1,15 +1,13 @@
 // Core
-import { routerMiddleware } from 'connected-react-router'
-import { createBrowserHistory } from 'history'
-import { compose } from 'redux'
-import { createLogger } from 'redux-logger'
-import thunk from 'redux-thunk'
+import { compose } from 'redux';
+import { createLogger } from 'redux-logger';
+// import thunk from 'redux-thunk';
 
 export const logger = createLogger({
   duration: true,
   collapsed: true,
   colors: {
-    title: action => {
+    title: (action) => {
       return action.error ? 'firebrick' : 'deepskyblue';
     },
     prevState: () => '#1C5FAF',
@@ -19,19 +17,15 @@ export const logger = createLogger({
   },
 });
 
-const history = createBrowserHistory();
-
-const myRouterMiddleware = routerMiddleware(history);
-
 const developmentEnvironment = process.env.NODE_ENV === 'development';
 const devtools = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
-const composeEnhancers = developmentEnvironment && devtools ? devtools : compose;
+const composeEnhancers =
+  developmentEnvironment && devtools ? devtools : compose;
 
-const middleware = [thunk, myRouterMiddleware];
+// const middleware = [thunk];
 
 if (developmentEnvironment) {
-  middleware.push(logger);
+  // middleware.push(logger);
 }
 
-export { composeEnhancers, middleware, history }
-
+// export { composeEnhancers, middleware };

@@ -9,7 +9,7 @@ import { pizzasActions } from '../../../bus/pizzas/actions';
 
 export const useHomeFetch = () => {
   const dispatch = useDispatch();
-  const { items } = useSelector(({ pizzas }) => ({ items: pizzas.items }));
+  const items = useSelector(({ pizzas }) => pizzas.items);
 
   //* With Promoces
   // useEffect(() => {
@@ -39,7 +39,7 @@ export const useHomeFetch = () => {
     axios.get('http://localhost:3000/db.json').then(({ data }) => {
       dispatch(pizzasActions.setPizzas(data.pizzas));
     });
-    console.log('Запрос на сервер')
+    console.log('Запрос на сервер');
   }, [dispatch]);
 
   // * With Thunk

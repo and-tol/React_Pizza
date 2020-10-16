@@ -16,7 +16,7 @@ export const Button = ({outline, handleClick, className, children }) => {
 };
 
 Button.propTypes = {
-  outline: PropTypes.string,
+  outline: PropTypes.bool,
   className: PropTypes.string,
   handleClick: PropTypes.func,
   children: PropTypes.any.isRequired,
