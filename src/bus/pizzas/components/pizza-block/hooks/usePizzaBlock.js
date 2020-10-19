@@ -1,3 +1,4 @@
+// Core
 import { useState } from 'react';
 
 export const usePizzaBlock = (types, sizes) => {
@@ -5,6 +6,7 @@ export const usePizzaBlock = (types, sizes) => {
   const onSelectType = index => {
     setActiveType(index);
   };
+  
   const [activeSize, setActiveSize] = useState(sizes[0]);
   const onSelectSize = index => {
     setActiveSize(index);

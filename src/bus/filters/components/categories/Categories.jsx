@@ -1,7 +1,8 @@
 // Core
 import React from 'react'
+import PropTypes from 'prop-types'
 // Hooks
-import { useCategories } from './hooks/useCategories'
+import { useCategories } from '../../hooks/useCategories'
 
 // export class Categories extends React.Component {
 //   constructor(props) {
@@ -12,7 +13,7 @@ import { useCategories } from './hooks/useCategories'
 //     };
 //   }
 
-//   onSelectKind = index => {
+//   onSelectCategory = index => {
 //     this.setState({
 //       activeKind: index,
 //     });
@@ -23,7 +24,7 @@ import { useCategories } from './hooks/useCategories'
 //     const pizzaKindsJSX = availableCategories.map(kind => (
 //       <li
 //         className={this.state.activeKind === index ? 'active' : ''}
-//         onClick={() => this.onSelectKind(index)}
+//         onClick={() => this.onSelectCategory(index)}
 //         key={kind}>
 //         {kind}
 //       </li>
@@ -41,15 +42,15 @@ import { useCategories } from './hooks/useCategories'
 // }
 
 export const Categories = React.memo(({ availableCategories }) => {
-  const { activeKind, onSelectKind } = useCategories();
+  const { activeCategory, onSelectCategory } = useCategories();
 
   const pizzaKindsJSX =
     availableCategories &&
     availableCategories.map((kind, index) => (
       <li
-        className={activeKind === index ? 'active' : ''}
+        className={activeCategory === index ? 'active' : ''}
         onClick={() => {
-          onSelectKind(index);
+          onSelectCategory(index);
         }}
         key={kind}
       >
@@ -61,9 +62,9 @@ export const Categories = React.memo(({ availableCategories }) => {
     <div className='categories'>
       <ul>
         <li
-          className={activeKind === null ? 'active' : ''}
+          className={activeCategory === null ? 'active' : ''}
           onClick={() => {
-            onSelectKind(null);
+            onSelectCategory(null);
           }}
         >
           Все
@@ -73,3 +74,12 @@ export const Categories = React.memo(({ availableCategories }) => {
     </div>
   );
 })
+
+Categories.propTypes = {
+  availableCategories: PropTypes.array
+};
+
+
+Categories.defaultProps = {
+  availableCategories: []
+};

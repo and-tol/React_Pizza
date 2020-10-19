@@ -1,14 +1,8 @@
 export const availableFilters = {
   availableSorting: [
-    { name: 'популярности', type: 'popular' },
-    { name: 'цене', type: 'price' },
-    { name: 'алфавиту', type: 'alphabet' },
+    { name: 'популярности', type: 'popular', order: 'desc' },
+    { name: 'цене', type: 'price', order: 'desc' },
+    { name: 'алфавиту', type: 'name', order: 'asc' },
   ],
-  availableCategories: [
-    'Мясные',
-    'Вегетарианская',
-    'Гриль',
-    'Острые',
-    'Закрытые'
-  ],
+  availableCategories: ['Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'],
 };

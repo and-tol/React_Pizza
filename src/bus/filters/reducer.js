@@ -2,8 +2,8 @@
 import { types } from './types';
 
 const initialState = {
-  category: 0,
-  sortBy: 'popular',
+  category: null,
+  sortBy: { type: 'popular', order: 'desc' },
 };
 
 export const filtersReducer = (state = initialState, { type, payload }) => {
@@ -11,7 +11,11 @@ export const filtersReducer = (state = initialState, { type, payload }) => {
     case types.SET_SORT_BY:
       return {
         ...state,
-        sortBy: payload,
+        sortBy: {
+          ...state.sortBy,
+          type: payload.type,
+          order: payload.order,
+        },
       };
     case types.SET_CATEGORY:
       return {

@@ -2,10 +2,10 @@
 import { types } from './types';
 
 export const filtersActions = Object.freeze({
-  setSortBy: name => {
+  setSortBy: ({ type, order }) => {
     return {
       type: types.SET_SORT_BY,
-      payload: name,
+      payload: { type, order },
     };
   },
   setCategory: categoryIndex => {

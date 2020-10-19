@@ -2,14 +2,15 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-// Libraries
-import axios from 'axios';
 // Actions
 import { pizzasActions } from '../../../bus/pizzas/actions';
+// Api
+// import { root } from '../../../api/config';
 
 export const useHomeFetch = () => {
   const dispatch = useDispatch();
   const items = useSelector(({ pizzas }) => pizzas.items);
+  const { category, sortBy } = useSelector(state => state.filters);
 
   //* With Promoces
   // useEffect(() => {
@@ -35,16 +36,17 @@ export const useHomeFetch = () => {
   // }, []);
 
   // * With axios
-  useEffect(() => {
-    axios.get('http://localhost:3000/db.json').then(({ data }) => {
-      dispatch(pizzasActions.setPizzas(data.pizzas));
-    });
-  }, [dispatch]);
+  // useEffect(() => {
+  //   axios.get(`${root}db.json`).then(({ data }) => {
+
+  //     dispatch(pizzasActions.setPizzas(data.pizzas));
+  //   });
+  // }, [dispatch]);
 
   // * With Thunk
-  // useEffect(() => {
-  //   dispatch(pizzasActions.fetchPizzasAsync())
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(pizzasActions.fetchPizzasAsync(sortBy, category));
+  }, [dispatch, category, sortBy]);
 
   return {
     items,

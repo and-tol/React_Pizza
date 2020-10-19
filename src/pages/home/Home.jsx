@@ -9,7 +9,6 @@ import { Pizzas } from '../../bus/pizzas';
 import { useHomeFetch } from './hooks/useHomeFetch';
 // // Actions
 // import { pizzasActions } from '../../bus/pizzas/actions';
-
 // import { store } from '../../init/store';
 
 export const Home = () => {

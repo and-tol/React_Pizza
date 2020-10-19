@@ -1,11 +1,10 @@
 // Core
-import React from 'react'
-
+import React from 'react';
+import PropTypes from 'prop-types';
 // Hooks
-import { useSortPopup } from './hooks/useSortPopup'
+import { useSortPopup } from '../../hooks/useSortPopup';
 
 export const SortPopup = React.memo(({ availableSorting }) => {
-
   const {
     visiblePopup,
     activeSorting,
@@ -20,8 +19,8 @@ export const SortPopup = React.memo(({ availableSorting }) => {
     availableSorting.map(({ name, type }, index) => (
       <li
         key={type}
-        className={activeSorting === index ? 'active' : ''}
-        onClick={() => onActiveSorting(index)}
+        className={activeSorting === type ? 'active' : ''}
+        onClick={() => onActiveSorting(type)}
       >
         {name}
       </li>
@@ -54,3 +53,11 @@ export const SortPopup = React.memo(({ availableSorting }) => {
     </div>
   );
 });
+
+SortPopup.propTypes = {
+  availableSorting: PropTypes.array,
+};
+
+SortPopup.defaultProps = {
+  availableSorting: [],
+};
