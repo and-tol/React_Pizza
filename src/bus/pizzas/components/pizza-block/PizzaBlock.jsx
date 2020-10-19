@@ -8,6 +8,10 @@ import { availableSelections } from './availableSelections';
 // Hooks
 import { usePizzaBlock } from './hooks/usePizzaBlock';
 
+/**
+ *
+ * @component PizzaBlock UI for  pizza picture, size, types un u.c.
+ */
 export const PizzaBlock = ({ name, imageUrl, price, types, sizes }) => {
   const { activeType, onSelectType, activeSize, onSelectSize } = usePizzaBlock(types, sizes);
 

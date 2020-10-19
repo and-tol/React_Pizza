@@ -1,10 +1,8 @@
 // Core
 import React from 'react'
 import PropTypes from 'prop-types'
-//Config
-import { availablePizzaKinds } from './availablePizzaKinds'
 // Hooks
-import { useCategories } from './hooks/useCategories'
+import { useCategories } from '../../hooks/useCategories'
 
 // export class Categories extends React.Component {
 //   constructor(props) {
@@ -15,7 +13,7 @@ import { useCategories } from './hooks/useCategories'
 //     };
 //   }
 
-//   onSelectKind = index => {
+//   onSelectCategory = index => {
 //     this.setState({
 //       activeKind: index,
 //     });
@@ -23,10 +21,10 @@ import { useCategories } from './hooks/useCategories'
 
 //   render() {
 //     const { handlePizzaKind } = this.props;
-//     const pizzaKindsJSX = availablePizzaKinds.map(kind => (
+//     const pizzaKindsJSX = availableCategories.map(kind => (
 //       <li
 //         className={this.state.activeKind === index ? 'active' : ''}
-//         onClick={() => this.onSelectKind(index)}
+//         onClick={() => this.onSelectCategory(index)}
 //         key={kind}>
 //         {kind}
 //       </li>
@@ -43,16 +41,19 @@ import { useCategories } from './hooks/useCategories'
 //   }
 // }
 
-export const Categories = () => {
-  const { activeKind, onSelectKind } = useCategories();
+export const Categories = React.memo(({ availableCategories }) => {
+  const { activeCategory, onSelectCategory } = useCategories();
 
   const pizzaKindsJSX =
-    availablePizzaKinds &&
-    availablePizzaKinds.map((kind, index) => (
+    availableCategories &&
+    availableCategories.map((kind, index) => (
       <li
-        className={activeKind === index ? 'active' : ''}
-        onClick={() => onSelectKind(index)}
-        key={kind}>
+        className={activeCategory === index ? 'active' : ''}
+        onClick={() => {
+          onSelectCategory(index);
+        }}
+        key={kind}
+      >
         {kind}
       </li>
     ));
@@ -61,18 +62,24 @@ export const Categories = () => {
     <div className='categories'>
       <ul>
         <li
-          className={activeKind === null ? 'active' : ''}
+          className={activeCategory === null ? 'active' : ''}
           onClick={() => {
-            onSelectKind(null);
-          }}>
+            onSelectCategory(null);
+          }}
+        >
           Все
         </li>
         {pizzaKindsJSX}
       </ul>
     </div>
   );
-};
+})
 
 Categories.propTypes = {
-  handlePizzaKind: PropTypes.func,
+  availableCategories: PropTypes.array
+};
+
+
+Categories.defaultProps = {
+  availableCategories: []
 };

@@ -1,11 +1,10 @@
 // Core
-import React from 'react'
-// Config
-import { availableSorting } from './availableSorting'
+import React from 'react';
+import PropTypes from 'prop-types';
 // Hooks
-import { useSortPopup } from './hooks/useSortPopup'
+import { useSortPopup } from '../../hooks/useSortPopup';
 
-export const SortPopup = () => {
+export const SortPopup = React.memo(({ availableSorting }) => {
   const {
     visiblePopup,
     activeSorting,
@@ -13,19 +12,19 @@ export const SortPopup = () => {
     activeLabel,
     toggleVisiblePopup,
     onActiveSorting,
-  } = useSortPopup()
+  } = useSortPopup();
 
   const sortingJSX =
     availableSorting &&
-    availableSorting.map((sorting, index) => (
+    availableSorting.map(({ name, type }, index) => (
       <li
-        key={sorting}
-        className={activeSorting === index ? 'active' : ''}
-        onClick={() => onActiveSorting(index)}
+        key={type}
+        className={activeSorting === type ? 'active' : ''}
+        onClick={() => onActiveSorting(type)}
       >
-        {sorting}
+        {name}
       </li>
-    ))
+    ));
 
   return (
     <div ref={sortRef} className='sort'>
@@ -44,19 +43,21 @@ export const SortPopup = () => {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span
-          onClick={toggleVisiblePopup}
-        >
-          {activeLabel}
-        </span>
+        <span onClick={toggleVisiblePopup}>{activeLabel}</span>
       </div>
       {visiblePopup && (
         <div className='sort__popup'>
-          <ul>
-            {sortingJSX}
-          </ul>
+          <ul>{sortingJSX}</ul>
         </div>
       )}
     </div>
-  )
-}
+  );
+});
+
+SortPopup.propTypes = {
+  availableSorting: PropTypes.array,
+};
+
+SortPopup.defaultProps = {
+  availableSorting: [],
+};
