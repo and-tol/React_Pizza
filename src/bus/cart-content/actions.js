@@ -14,5 +14,11 @@ export const cartActions = Object.freeze({
       type: types.CART_CLEAR_CART,
     }
   },
+  removeCartItem: (id) => {
+    return {
+      type: types.CART_REMOVE_CART_ITEM,
+      payload: id,
+    }
+  },
 
 })

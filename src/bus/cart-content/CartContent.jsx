@@ -9,17 +9,20 @@ import { CartItem } from './components/cart-item';
 import { useCartContent } from './hooks/useCartContent';
 
 export const CartContent = () => {
-  const { cartItems, addedPizzas } = useCartContent();
+  const { cartItems, addedPizzas, onRemoveItem } = useCartContent();
 
   const addedPizzasJSX = addedPizzas.map(obj => {
+
     return (
       <CartItem
         key={unicId()}
+        id={obj.id}
         name={obj.name}
         type={obj.type}
         size={obj.size}
         totalPrice={cartItems[obj.id].totalPrice}
         totalCount={cartItems[obj.id].items.length}
+        onRemoveItem={onRemoveItem}
       />
     );
   });

@@ -1,8 +1,15 @@
 // Core
 import React from 'react';
 import PropTypes from 'prop-types';
+// Component
+import { Button } from '../../../../elements/button';
 
-export const CartItem = ({ name, type, size, totalPrice, totalCount }) => {
+export const CartItem = ({ id, name, type, size, totalPrice, totalCount, onRemoveItem }) => {
+  const handleRemoveItem = () => {
+    console.log('cartItem id', id)
+    onRemoveItem(id);
+  };
+
   return (
     <div className='cart__item'>
       <div className='cart__item-img'>
@@ -61,7 +68,7 @@ export const CartItem = ({ name, type, size, totalPrice, totalCount }) => {
         <b>{totalPrice} ₽</b>
       </div>
       <div className='cart__item-remove'>
-        <div className='button button--outline button--circle'>
+        <Button handleClick={handleRemoveItem} className='button--circle' outline>
           <svg
             width='10'
             height='10'
@@ -78,7 +85,7 @@ export const CartItem = ({ name, type, size, totalPrice, totalCount }) => {
               fill='#EB5A1E'
             />
           </svg>
-        </div>
+        </Button>
       </div>
     </div>
   );
@@ -89,4 +96,5 @@ CartItem.propTypes = {
   types: PropTypes.string,
   size: PropTypes.number,
   totalPrice: PropTypes.number,
+  onRemoveItem: PropTypes.func,
 };
