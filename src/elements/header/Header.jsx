@@ -1,6 +1,9 @@
 // Core
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+// Hooks
+import { useHeader } from '../hooks/useHeader';
 // Navigation
 import { book } from '../../navigation/book';
 // Image
@@ -9,6 +12,8 @@ import logo from '../../assests/img/pizza-logo.svg';
 import { Button } from '../button/Button';
 
 export const Header = () => {
+  const { totalPrice, itemsCount } = useSelector(state => state.cart);
+
   return (
     <header className='header'>
       <div className='container'>
@@ -24,7 +29,7 @@ export const Header = () => {
         <div className='header__cart'>
           <Link to={book.cart.url}>
             <Button className='button--cart' outline>
-              <span>520 ₽</span>
+              <span>{totalPrice} ₽</span>
               <div className='button__delimiter'></div>
               <svg
                 width='18'
@@ -55,7 +60,7 @@ export const Header = () => {
                   strokeLinejoin='round'
                 />
               </svg>
-              <span>3</span>
+              <span>{itemsCount}</span>
             </Button>
           </Link>
         </div>

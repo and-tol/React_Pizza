@@ -3,17 +3,35 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // Libraries
 import cx from 'classnames';
-// Config
-import { availableSelections } from './availableSelections';
 // Hooks
-import { usePizzaBlock } from './hooks/usePizzaBlock';
+import { usePizzaBlock } from '../../hooks/usePizzaBlock';
+// Component
+import { Button } from '../../../../elements/';
 
 /**
  *
- * @component PizzaBlock UI for  pizza picture, size, types un u.c.
+ * @component PizzaBlock - UI for pizza picture, size, types un u.c.
  */
-export const PizzaBlock = ({ name, imageUrl, price, types, sizes }) => {
-  const { activeType, onSelectType, activeSize, onSelectSize } = usePizzaBlock(types, sizes);
+export const PizzaBlock = ({
+  id,
+  name,
+  imageUrl,
+  price,
+  types,
+  sizes,
+  onAddPizza,
+  availableSelections,
+  addedCount,
+}) => {
+  const { activeType, onSelectType, activeSize, onSelectSize, handleAddPizza } = usePizzaBlock(
+    types,
+    sizes,
+    id,
+    name,
+    imageUrl,
+    price,
+    onAddPizza
+  );
 
   const pizzaTypesJSX = availableSelections.pizzaTypes.map((type, index) => (
     <li
@@ -51,7 +69,7 @@ export const PizzaBlock = ({ name, imageUrl, price, types, sizes }) => {
       </div>
       <div className='pizza-block__bottom'>
         <div className='pizza-block__price'>от {price} ₽</div>
-        <div className='button button--outline button--add'>
+        <Button handleClick={handleAddPizza} className='button--add' outline>
           <svg
             width='12'
             height='12'
@@ -65,8 +83,8 @@ export const PizzaBlock = ({ name, imageUrl, price, types, sizes }) => {
             />
           </svg>
           <span>Добавить</span>
-          <i>2</i>
-        </div>
+          {addedCount && <i>{addedCount}</i>}
+        </Button>
       </div>
     </div>
   );
@@ -78,9 +96,11 @@ PizzaBlock.propTypes = {
   price: PropTypes.number.isRequired,
   types: PropTypes.arrayOf(PropTypes.number).isRequired,
   sizes: PropTypes.arrayOf(PropTypes.number).isRequired,
+  onAddPizza: PropTypes.func,
+  addedCount: PropTypes.number,
 };
 
 PizzaBlock.defaultProps = {
   types: [],
   sizes: [],
-}
+};
