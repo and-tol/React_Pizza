@@ -12,7 +12,10 @@ export const CartEmpty = () => {
   return (
     <div className='cart cart--empty'>
       <h2>
-        Корзина пустая <icon>😕</icon>
+        Корзина пустая{' '}
+        <span role='img' aria-label='Sadness'>
+          😕
+        </span>
       </h2>
       <p>
         Вероятней всего, вы не заказывали ещё пиццу.
@@ -20,8 +23,10 @@ export const CartEmpty = () => {
         Для того, чтобы заказать пиццу, перейди на главную страницу.
       </p>
       <img src={emptyCartImg} alt='Empty cart' />
-      <Link to={book.root.url} className='button button--black'>
-        <span>Вернуться назад</span>
+      <Link to={book.root.url}>
+        <Button className='button--black'>
+          <span>Вернуться назад</span>
+        </Button>
       </Link>
     </div>
   );

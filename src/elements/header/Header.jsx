@@ -2,8 +2,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-// Hooks
-import { useHeader } from '../hooks/useHeader';
 // Navigation
 import { book } from '../../navigation/book';
 // Image

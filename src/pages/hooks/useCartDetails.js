@@ -1,8 +1,12 @@
 // Core
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
 
 export const useCartDetails = () => {
-  const { totalPrice, itemsCount } = useSelector(({ cart }) => cart);
+  const cart = useSelector(({ cart }) => cart);
 
-  return { totalPrice, itemsCount };
+  const onClickOrder = () => {
+    console.log('ВАШ ЗАКАЗ', cart.cartItems);
+  };
+
+  return { totalPrice: cart.totalPrice, items: cart.itemsCount, onClickOrder };
 };

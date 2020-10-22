@@ -1,14 +1,18 @@
 // Core
 import React from 'react';
+import { Link } from 'react-router-dom';
+// Navigation
+import { book } from '../../navigation/book';
 // Component
 import { CartContent } from '../../bus/cart-content';
-import {CartEmpty} from './components/cart-empty'
+import { CartEmpty } from './components/cart-empty';
+import { Button } from '../../elements/button';
 // Hooks
 import { useCartDetails } from '../hooks/useCartDetails';
 import { useClearCart } from '../hooks/useClearCart';
 
 export const Cart = () => {
-  const { totalPrice, itemsCount } = useCartDetails();
+  const { totalPrice, itemsCount, onClickOrder } = useCartDetails();
   const { onClearCart } = useClearCart();
 
   return (
@@ -105,28 +109,30 @@ export const Cart = () => {
                 </span>
               </div>
               <div className='cart__bottom-buttons'>
-                <a href='/' className='button button--outline button--add go-back-btn'>
-                  <svg
-                    width='8'
-                    height='14'
-                    viewBox='0 0 8 14'
-                    fill='none'
-                    xmlns='http://www.w3.org/2000/svg'
-                  >
-                    <path
-                      d='M7 13L1 6.93015L6.86175 1'
-                      stroke='#D3D3D3'
-                      strokeWidth='1.5'
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                    />
-                  </svg>
+                <Link to={book.root.url} >
+                  <Button className={'button--add go-back-btn'} outline>
+                    <svg
+                      width='8'
+                      height='14'
+                      viewBox='0 0 8 14'
+                      fill='none'
+                      xmlns='http://www.w3.org/2000/svg'
+                    >
+                      <path
+                        d='M7 13L1 6.93015L6.86175 1'
+                        stroke='#D3D3D3'
+                        strokeWidth='1.5'
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                      />
+                    </svg>
 
-                  <span>Вернуться назад</span>
-                </a>
-                <div className='button pay-btn'>
+                    <span>Вернуться назад</span>
+                  </Button>
+                </Link>
+                <Button handleClick={onClickOrder} className='pay-btn'>
                   <span>Оплатить сейчас</span>
-                </div>
+                </Button>
               </div>
             </div>
           </div>

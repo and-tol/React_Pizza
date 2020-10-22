@@ -1,6 +1,5 @@
 // Core
 import React from 'react';
-import PropTypes from 'prop-types';
 // Helpers
 import { unicId } from '../../helpers';
 // Component
@@ -12,7 +11,6 @@ export const CartContent = () => {
   const { cartItems, addedPizzas, onRemoveItem, onIncreseItem, onDecreseItem } = useCartContent();
 
   const addedPizzasJSX = addedPizzas.map(obj => {
-
     return (
       <CartItem
         key={unicId()}
@@ -36,5 +34,3 @@ export const CartContent = () => {
     </div>
   );
 };
-
-CartContent.propTypes = {};

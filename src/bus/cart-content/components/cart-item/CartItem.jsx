@@ -3,6 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // Component
 import { Button } from '../../../../elements/button';
+// Hooks
+import {useCartItem} from '../../hooks/useCartItem'
 
 export const CartItem = ({
   id,
@@ -15,16 +17,13 @@ export const CartItem = ({
   onIncreseItem,
   onDecreseItem,
 }) => {
-  const handleRemoveItem = () => {
-    onRemoveItem(id);
-  };
-  const handleIncreseItem = () => {
-    onIncreseItem(id);
-  }
-  const handleDecreseItem = () => {
-    onDecreseItem(id);
-  }
 
+  const { handleRemoveItem, handleIncreseItem, handleDecreseItem } = useCartItem(
+    id,
+    onRemoveItem,
+    onIncreseItem,
+    onDecreseItem
+  );
 
   return (
     <div className='cart__item'>
@@ -42,9 +41,12 @@ export const CartItem = ({
         </p>
       </div>
       <div className='cart__item-count'>
-        <div className='button button--outline button--circle cart__item-count-minus'>
+        <Button
+          handleClick={handleDecreseItem}
+          className='button--circle cart__item-count-minus'
+          outline
+        >
           <svg
-            onClick={handleDecreseItem}
             width='10'
             height='10'
             viewBox='0 0 10 10'
@@ -60,11 +62,14 @@ export const CartItem = ({
               fill='#EB5A1E'
             />
           </svg>
-        </div>
+        </Button>
         <b>{totalCount}</b>
-        <div className='button button--outline button--circle cart__item-count-plus'>
+        <Button
+          handleClick={handleIncreseItem}
+          className='button--circle cart__item-count-plus'
+          outline
+        >
           <svg
-            onClick={handleIncreseItem}
             width='10'
             height='10'
             viewBox='0 0 10 10'
@@ -80,7 +85,7 @@ export const CartItem = ({
               fill='#EB5A1E'
             />
           </svg>
-        </div>
+        </Button>
       </div>
       <div className='cart__item-price'>
         <b>{totalPrice} ₽</b>

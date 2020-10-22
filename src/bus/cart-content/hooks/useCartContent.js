@@ -15,13 +15,12 @@ export const useCartContent = () => {
     }
   };
 
-  const onIncreseItem = (id) => {
-    dispatch(cartActions.increaseCartItem(id))
-  }
-  const onDecreseItem = (id) => {
-    dispatch(cartActions.decreaseCartItem(id))
-  }
-
+  const onIncreseItem = id => {
+    dispatch(cartActions.increaseCartItem(id));
+  };
+  const onDecreseItem = id => {
+    dispatch(cartActions.decreaseCartItem(id));
+  };
 
   return { cartItems, addedPizzas, onRemoveItem, onIncreseItem, onDecreseItem };
 };
