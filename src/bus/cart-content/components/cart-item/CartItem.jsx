@@ -4,11 +4,27 @@ import PropTypes from 'prop-types';
 // Component
 import { Button } from '../../../../elements/button';
 
-export const CartItem = ({ id, name, type, size, totalPrice, totalCount, onRemoveItem }) => {
+export const CartItem = ({
+  id,
+  name,
+  type,
+  size,
+  totalPrice,
+  totalCount,
+  onRemoveItem,
+  onIncreseItem,
+  onDecreseItem,
+}) => {
   const handleRemoveItem = () => {
-    console.log('cartItem id', id)
     onRemoveItem(id);
   };
+  const handleIncreseItem = () => {
+    onIncreseItem(id);
+  }
+  const handleDecreseItem = () => {
+    onDecreseItem(id);
+  }
+
 
   return (
     <div className='cart__item'>
@@ -28,6 +44,7 @@ export const CartItem = ({ id, name, type, size, totalPrice, totalCount, onRemov
       <div className='cart__item-count'>
         <div className='button button--outline button--circle cart__item-count-minus'>
           <svg
+            onClick={handleDecreseItem}
             width='10'
             height='10'
             viewBox='0 0 10 10'
@@ -47,6 +64,7 @@ export const CartItem = ({ id, name, type, size, totalPrice, totalCount, onRemov
         <b>{totalCount}</b>
         <div className='button button--outline button--circle cart__item-count-plus'>
           <svg
+            onClick={handleIncreseItem}
             width='10'
             height='10'
             viewBox='0 0 10 10'
@@ -97,4 +115,6 @@ CartItem.propTypes = {
   size: PropTypes.number,
   totalPrice: PropTypes.number,
   onRemoveItem: PropTypes.func,
+  onIncreseItem: PropTypes.func,
+  onDecreseItem: PropTypes.func,
 };

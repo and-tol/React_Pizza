@@ -10,11 +10,18 @@ export const useCartContent = () => {
   const addedPizzas = Object.keys(cartItems).map(key => cartItems[key].items[0]);
 
   const onRemoveItem = id => {
-    console.log('id>', id)
     if (window.confirm('Вы действительно хотите удалить?')) {
       dispatch(cartActions.removeCartItem(id));
     }
   };
 
-  return { cartItems, addedPizzas, onRemoveItem };
+  const onIncreseItem = (id) => {
+    dispatch(cartActions.increaseCartItem(id))
+  }
+  const onDecreseItem = (id) => {
+    dispatch(cartActions.decreaseCartItem(id))
+  }
+
+
+  return { cartItems, addedPizzas, onRemoveItem, onIncreseItem, onDecreseItem };
 };

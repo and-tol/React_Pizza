@@ -20,5 +20,17 @@ export const cartActions = Object.freeze({
       payload: id,
     }
   },
+ increaseCartItem: (id) => {
+    return {
+      type: types.CART_INCREASE_PIZZA_QUANTITY,
+      payload: id,
+    }
+  },
+ decreaseCartItem: (id) => {
+    return {
+      type: types.CART_DECREASE_PIZZA_QUANTITY,
+      payload: id,
+    }
+  },
 
 })
