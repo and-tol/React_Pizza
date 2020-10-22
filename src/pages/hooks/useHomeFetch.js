@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 // Actions
-import { pizzasActions } from '../../../bus/pizzas/actions';
+import { pizzasActions } from '../../bus/pizzas/actions';
 // Api
 // import { root } from '../../../api/config';
 

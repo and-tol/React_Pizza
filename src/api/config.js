@@ -1,1 +1,3 @@
-export const root = 'http://localhost:3001/';
+// export const root = 'http://localhost:3001/';
+// With proxy
+export const root = '/';

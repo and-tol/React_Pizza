@@ -1,3 +1,4 @@
+// Pages
 import { Home } from '../pages/home';
 import { Cart } from '../pages/cart';
 
